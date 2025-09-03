@@ -9,25 +9,12 @@ public class Aluno {
         this.nota = 0.0;
     }
 
-    public String getNome(){
-        return nome;
-    }
-
-    public String getMatricula(){
-        return matricula;
-    }
-
-    public double getNota() {
-        return nota;
-    }
-
-    public void setNota(double nota) {
-        this.nota = nota;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+    // getters setters
+    public String getNome(){return nome;}
+    public String getMatricula(){return matricula;}
+    public double getNota() {return nota;}
+    public void setNota(double nota) {this.nota = nota;}
+    public void setNome(String nome) {this.nome = nome;}
 
     public void exibirInfo(){
         System.out.println("-------------------");

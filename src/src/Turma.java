@@ -1,38 +1,47 @@
-import java.util.Scanner;
 import java.util.ArrayList;
 
-public class Turma {
-    private String nomeTurma;
-    Scanner input = new Scanner(System.in);
-    ArrayList<String> alunos = new ArrayList<String>();
+public class Turma{
+    public String nomeTurma;
+    ArrayList<Aluno> lista_alunos = new ArrayList<Aluno>();
 
-    public void adicionarAluno(Aluno aluno) {
-        System.out.println("Digite o nome do novo aluno:");
-        String novonome = input.nextLine();
-        alunos.add(novonome);
+    public Turma(String nomeTurma){
+        this.nomeTurma = nomeTurma;
     }
 
-    public void listarAlunos() {
-        for(int i = 0; i < alunos.size(); i++){
-            System.out.println(alunos.get(i));
+    public void adicionarAluno(Aluno aluno){
+        lista_alunos.add(aluno);
+    }
+
+    public void listarAlunos(){
+        if (lista_alunos.isEmpty()){
+            System.out.println("Nenhum aluno cadastrado.");
+            return;
         }
-
+        for (Aluno aluno : lista_alunos){
+            aluno.getNome();
+            aluno.getMatricula();
+            aluno.getNota();
+            System.out.println("- " + aluno.getNome() + " " + aluno.getMatricula() + " " + aluno.getNota());
+        }
     }
 
-    public String buscarAlunoPorMatricula(int matricula){
-        System.out.println("Digite o número correspondente ao do aluno:");
-        matricula = input.nextInt();
-        return alunos.get(matricula);
-    } // retorna o aluno correspondente
+    public Aluno buscarAlunoPorMatricula(int matricula) {
+        return lista_alunos.get(matricula);
+    }
 
-    public void removerAluno(int matricula){
-        System.out.println("Digite o número correspondente ao do aluno:");
-        int excluiraluno = input.nextInt();
-        alunos.remove(excluiraluno);
+    public void removerAluno(int matricula) {
+        Aluno remover = buscarAlunoPorMatricula(matricula);
+        lista_alunos.remove(matricula);
         System.out.println("Aluno removido.");
     }
 
-    public void calcularMediaTurma(){
-
-    } // calcula e retorna média da nota da turma
-}
+    public double calcularMediaTurma() {
+        if (lista_alunos.isEmpty()) {
+            return 0.0;
+        }
+        double soma = 0.0;
+        for (Aluno aluno : lista_alunos)
+            soma += aluno.getNota();
+        return soma / lista_alunos.size();
+        }
+    }
