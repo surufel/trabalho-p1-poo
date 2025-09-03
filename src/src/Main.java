@@ -19,13 +19,27 @@ public class Main {
             // Descobri recentemente que o buffer do Scanner do Menu pega um '/n', deixando algumas coisas 'null'
             switch (n) {
                 case 1:
-                    System.out.print("Nome: ");
+                    System.out.print("Insira o nome do novo aluno: ");
                     String nome = input.nextLine();
                     Aluno novoestudante = new Aluno(nome);
                     novoestudante.setNome(nome);
-                    System.out.print("Nota (0.0-10.0): ");
-                    input.nextDouble();
-                    novoestudante.setNota(input.nextDouble());
+                    double nota;
+                    System.out.println("Insira a nota do novo aluno:");
+                    while (true) { // Loop de validação
+                        if (input.hasNextDouble()) {
+                            nota = input.nextDouble();
+                            if (nota >= 0.0 && nota <= 10.0){
+                                break;
+                            }
+                            System.out.print("Fora do intervalo (0,0 a 10,0). Tente de novo: ");
+                        }
+                        else{
+                            System.out.print("Valor inválido. Digite um número (ex: 7,5): ");
+                            input.next();
+                        }
+                    }
+                    input.nextLine(); // tira o buffer mencionado anteriormente
+                    novoestudante.setNota(nota);
                     turma_a.adicionarAluno(novoestudante);
                     System.out.println("Aluno adicionado.");
             break;
