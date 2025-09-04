@@ -73,7 +73,7 @@ public class Main {
                     System.out.println("Opção Inválida.");
                     break;
             }
-            if(n == 6){ break; }
+            if(n == 6){break;}
             }while(true);
         }
     }
