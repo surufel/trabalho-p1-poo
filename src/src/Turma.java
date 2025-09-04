@@ -3,12 +3,14 @@ import java.util.ArrayList;
 public class Turma{
     public String nomeTurma;
     ArrayList<Aluno> lista_alunos = new ArrayList<Aluno>();
+    private int num_matricula = 1;
 
     public Turma(String nomeTurma){
         this.nomeTurma = nomeTurma;
     }
 
     public void adicionarAluno(Aluno aluno){
+        aluno.setMatricula(num_matricula++); // 1, 2, ...
         lista_alunos.add(aluno);
     }
 
@@ -21,18 +23,29 @@ public class Turma{
             aluno.getNome();
             aluno.getMatricula();
             aluno.getNota();
-            System.out.println("- " + aluno.getNome() + " " + aluno.getMatricula() + " " + aluno.getNota());
+            System.out.println("- " + aluno.getNome() + " | Matrícula: "  + aluno.getMatricula() + " | Nota: " + aluno.getNota());
         }
     }
 
     public Aluno buscarAlunoPorMatricula(int matricula) {
-        return lista_alunos.get(matricula);
+        for (Aluno aluno : lista_alunos) {
+            if (aluno.getMatricula() == matricula){
+                return aluno;
+            }
+        }
+        return null;
     }
 
     public void removerAluno(int matricula) {
-        Aluno remover = buscarAlunoPorMatricula(matricula);
-        lista_alunos.remove(matricula);
-        System.out.println("Aluno removido.");
+        for (int i = 0; i < lista_alunos.size(); i++) {
+            Aluno aluno = lista_alunos.get(i);
+            if (aluno.getMatricula() == matricula) {
+                lista_alunos.remove(i);
+                System.out.println("Aluno removido: " + aluno.getNome());
+                return;
+            }
+        }
+        System.out.println("Matrícula não encontrada.");
     }
 
     public double calcularMediaTurma() {
