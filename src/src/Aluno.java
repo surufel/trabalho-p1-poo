@@ -1,7 +1,9 @@
 public class Aluno {
     private String nome;
-    private String matricula;
+    private int matricula;
     private double nota;
+
+
 
     public Aluno(String nome){
         this.nome = nome;
@@ -11,10 +13,11 @@ public class Aluno {
 
     // getters setters
     public String getNome(){return nome;}
-    public String getMatricula(){return matricula;}
+    public int getMatricula(){return matricula;}
     public double getNota() {return nota;}
     public void setNota(double nota) {this.nota = nota;}
     public void setNome(String nome) {this.nome = nome;}
+    public void setMatricula(int matricula) { this.matricula = matricula; }
 
     public void exibirInfo(){
         System.out.println("-------------------");
